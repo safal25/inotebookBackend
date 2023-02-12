@@ -55,7 +55,7 @@ router.post('/login',
                 try {
                     const errors=validationResult(req);
                     if(!errors.isEmpty()){
-                        return res.status(400).json({errors : "Please enter valid credentials"});
+                        return res.status(400).json({errors});
                     }
                     const user=await User.findOne({email : req.body.email});
                     if(!user){
