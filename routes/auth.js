@@ -41,7 +41,7 @@ router.post('/signup',
                     const token=jwt.sign(data,JWT_SECRET);
 
 
-                    return res.json({authtoken : token});
+                    return res.json({authtoken : token,name:newuser.name,success:true});
                 } catch (error) {
                     return res.status(500).send("Internal Server error");
                 }
@@ -72,7 +72,7 @@ router.post('/login',
                         }
                     };
                     const token=jwt.sign(data,JWT_SECRET);
-                    return res.json({authtoken : token,success:true});
+                    return res.json({authtoken : token,success:true,name:user.name});
                 } catch (error) {
                     console.log(error);
                     return res.status(500).send("Internal server error");
