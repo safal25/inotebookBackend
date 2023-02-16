@@ -64,7 +64,7 @@ router.put('/updatenote/:id',fetchuser,async (req,res)=>{
         }
         
         note=await Notes.findByIdAndUpdate(noteId,{$set : updatedNote},{new : true});
-        res.json(note);
+        res.json({success:true,note});
 
         
     } catch (error) {
@@ -88,7 +88,7 @@ router.delete('/deletenote/:id',fetchuser,async (req,res)=>{
         }
         
         note=await Notes.findByIdAndDelete(noteId);
-        res.json({message : "note deleted successfully"});
+        res.json({message : "note deleted successfully",success:true});
 
         
     } catch (error) {
