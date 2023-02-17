@@ -9,10 +9,10 @@ router.get('/fetchnotes',fetchuser, async (req,res)=>{
     try {
         const userId=req.user.id;
         const notes=await Notes.find({createdBy : userId}).sort({date : -1});
-        res.json(notes);
+        res.json({success:true,notes:notes});
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Internal Server error");
+        res.status(500).json({error:"Internal Server error",success : false});
     }
 });
 
@@ -69,7 +69,7 @@ router.put('/updatenote/:id',fetchuser,async (req,res)=>{
         
     } catch (error) {
         console.log(error);
-        res.status(500).send("Internal server error");
+        res.status(500).json({error : "Internal server error",success :false});
     }
 });
 
@@ -93,7 +93,7 @@ router.delete('/deletenote/:id',fetchuser,async (req,res)=>{
         
     } catch (error) {
         console.log(error);
-        res.status(500).send("Internal server error");
+        res.status(500).json({error : "Internal server error",success : false});
     }
 });
 
